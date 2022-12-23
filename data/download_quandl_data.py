@@ -1,4 +1,4 @@
-import quandl
+import nasdaqdatalink
 from settings.default import ALL_QUANDL_CODES
 import datetime as dt
 import argparse
@@ -7,7 +7,7 @@ import os
 DEPTH = 1
 
 def main(api_key: str):
-    quandl.ApiConfig.api_key = api_key
+    nasdaqdatalink.ApiConfig.api_key = api_key
 
     if not os.path.exists(os.path.join("data", "quandl")):
         os.mkdir(os.path.join("data", "quandl"))
@@ -15,7 +15,7 @@ def main(api_key: str):
     for t in ALL_QUANDL_CODES:
         print(t)
         try:
-            data = quandl.get(
+            data = nasdaqdatalink.get(
                 f"{t}{DEPTH}",
                 start_date="1988-01-01",
             )
